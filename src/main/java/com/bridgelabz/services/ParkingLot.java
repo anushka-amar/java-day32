@@ -43,17 +43,6 @@ public class ParkingLot {
         System.out.println("No car with ID: "+carId+" in this parking lot");
     }
 
-    /* checks in the list, if a car with corresponding
-    * carId exists then returns true */
-    public boolean check_parked(String carId) {
-        for(Car car:parkedCar){
-            if (car.getCarId().equals(carId)){
-                return true;
-            }
-        }
-        return false;
-    }
-
     /* UC-3 checks if the number of parked car is not equal to
     * the capacity then return remaining slots
     * else notifies airport security*/
@@ -94,6 +83,19 @@ public class ParkingLot {
             return true;
         }
         System.out.println("Parking lot is full. Cannot park");
+        return false;
+    }
+
+    /* UC-7 checks in the list to find car, if a car with corresponding
+     * carId exists then returns true */
+    public boolean check_parked(String carId) {
+        for(Car car:parkedCar){
+            if (car.getCarId().equals(carId)){
+                System.out.println("Car with ID: " + carId + " is parked at the parking lot.");
+                return true;
+            }
+        }
+        System.out.println("Car with ID: " + carId + " is not found in the parking lot.");
         return false;
     }
 }
