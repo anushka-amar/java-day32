@@ -20,4 +20,11 @@ class ParkingLotTest {
         parkingLot.parkCar(car1);
         assertTrue(parkingLot.check_parked("CR-ID-001"));
     }
+
+    @Test
+    void givenCarId_carShouldBeUnParkedSuccessfully(){
+        parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
+        parkingLot.unpark("CR-ID-001");
+        assertFalse(parkingLot.check_parked("CR-ID-001"));
+    }
 }
