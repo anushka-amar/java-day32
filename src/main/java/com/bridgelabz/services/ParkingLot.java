@@ -11,12 +11,12 @@ public class ParkingLot {
     private List<Car> parkedCar;
     private int capacity;
 
-    public ParkingLot(){
+    public ParkingLot(int capacity){
         this.parkedCar = new ArrayList<>();
-        this.capacity = 100;
+        this.capacity = capacity;
     }
 
-    /* if the capacity is not full,
+    /* UC-1 if the capacity is not full,
     * adds a new car to the list*/
     public boolean parkCar(Car car){
         if(parkedCar.size()<capacity){
@@ -29,8 +29,8 @@ public class ParkingLot {
         }
     }
 
-    /* iterates through the list, if car found then
-    * unparks the car */
+    /* UC-2 iterates through the list, if car found then
+     *  unparks the car */
     public void unpark(String carId) {
         for(Car car:parkedCar){
             if(car.getCarId().equals(carId)){
@@ -42,7 +42,7 @@ public class ParkingLot {
         System.out.println("No car with ID: "+carId+" in this parking lot");
     }
 
-    /* checks in the list, if a car with corrresponding
+    /* checks in the list, if a car with corresponding
     * carId exists then returns true */
     public boolean check_parked(String carId) {
         for(Car car:parkedCar){
@@ -53,11 +53,25 @@ public class ParkingLot {
         return false;
     }
 
+    /* UC-3 checks if the number of parked car is not equal to
+    * the capacity then return remaining slots
+    * else notifies airport security*/
     public String check_parking_status() {
         if(this.parkedCar.size() != this.capacity){
             int slots = this.capacity - this.parkedCar.size();
             return (slots+" slots are left in the parking lot");
         }
-        return "Parking lot is Full. Please come later.";
+        notify_owner();
+        return notify_security();
+    }
+
+    /*UC-3 notifies owner if the parking lot is full
+    * so that the full sign can be put out */
+    private void notify_owner() {
+        System.out.println("The Parking lot is full now");
+    }
+
+    private String notify_security(){
+        return "Please redirect Security staffs";
     }
 }
