@@ -11,7 +11,7 @@ class ParkingLotTest {
 
     @BeforeEach
     void init(){
-        parkingLot = new ParkingLot();
+        parkingLot = new ParkingLot(2);
     }
 
     @Test
@@ -32,5 +32,12 @@ class ParkingLotTest {
     void ifParkingCapacityFull_printsFull_elsePrintsTheLeftSlots(){
         parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
         assertEquals("99 slots are left in the parking lot", parkingLot.check_parking_status());
+    }
+
+    @Test
+    void ifParkingLotFull_notifiesAirportSecurity(){
+        parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
+        parkingLot.parkCar(new Car("CR-ID-002", "Grey"));
+        assertEquals("Please redirect Security staffs", parkingLot.check_parking_status());
     }
 }
