@@ -5,6 +5,8 @@ import com.bridgelabz.entity.Car;
 import java.util.ArrayList;
 import java.util.List;
 
+/*contains list of parked cars and capacity
+of parked cars, parks or unparks car accordingly*/
 public class ParkingLot {
     private List<Car> parkedCar;
     private int capacity;
@@ -14,6 +16,8 @@ public class ParkingLot {
         this.capacity = 100;
     }
 
+    /* if the capacity is not full,
+    * adds a new car to the list*/
     public boolean parkCar(Car car){
         if(parkedCar.size()<capacity){
             parkedCar.add(car);
@@ -25,6 +29,21 @@ public class ParkingLot {
         }
     }
 
+    /* iterates through the list, if car found then
+    * unparks the car */
+    public void unpark(String carId) {
+        for(Car car:parkedCar){
+            if(car.getCarId().equals(carId)){
+                parkedCar.remove(car);
+                System.out.println("Car with ID: "+carId+" has been unparked Successfully!!");
+                return;
+            }
+        }
+        System.out.println("No car with ID: "+carId+" in this parking lot");
+    }
+
+    /* checks in the list, if a car with corrresponding
+    * carId exists then returns true */
     public boolean check_parked(String carId) {
         for(Car car:parkedCar){
             if (car.getCarId().equals(carId)){

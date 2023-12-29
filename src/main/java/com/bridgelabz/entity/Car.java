@@ -1,5 +1,6 @@
 package com.bridgelabz.entity;
 
+/* manages the property of each car in the list */
 public class Car {
     private String carId;
     private String color;
