@@ -52,4 +52,12 @@ public class ParkingLot {
         }
         return false;
     }
+
+    public String check_parking_status() {
+        if(this.parkedCar.size() != this.capacity){
+            int slots = this.capacity - this.parkedCar.size();
+            return (slots+" slots are left in the parking lot");
+        }
+        return "Parking lot is Full. Please come later.";
+    }
 }
