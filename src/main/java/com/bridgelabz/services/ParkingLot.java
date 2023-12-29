@@ -1,5 +1,6 @@
 package com.bridgelabz.services;
 
+import com.bridgelabz.entity.Attendant;
 import com.bridgelabz.entity.Car;
 
 import java.util.ArrayList;
@@ -82,5 +83,17 @@ public class ParkingLot {
     * owner to remove full sign board */
     private String notify_owner_isEmpty() {
         return "Slots are available in the Parking lot.";
+    }
+
+    /* UC-6 overloads the parkCar method above
+    * to pass a corresponding attendant who will park the car */
+    public boolean parkCar(Car car, Attendant attendant){
+        if(parkedCar.size()<capacity){
+            parkedCar.add(car);
+            System.out.println("Car with ID: "+car.getCarId()+" has successfully been parked by Attendant: "+attendant.getAttId());
+            return true;
+        }
+        System.out.println("Parking lot is full. Cannot park");
+        return false;
     }
 }
