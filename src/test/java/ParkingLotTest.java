@@ -40,4 +40,14 @@ class ParkingLotTest {
         parkingLot.parkCar(new Car("CR-ID-002", "Grey"));
         assertEquals("Please redirect Security staffs", parkingLot.check_parking_status());
     }
+
+    @Test
+    void ifParkingLotHasSpace_notifyOwnerTORemoveFullSign(){
+        parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
+        parkingLot.parkCar(new Car("CR-ID-002", "Grey"));
+        assertEquals("Please redirect Security staffs", parkingLot.check_parking_status());
+
+        parkingLot.unpark("CR-ID-002");
+        assertEquals("Slots are available in the Parking lot.", parkingLot.check_parking_status());
+    }
 }
