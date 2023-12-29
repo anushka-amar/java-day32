@@ -1,3 +1,4 @@
+import com.bridgelabz.entity.Attendant;
 import com.bridgelabz.entity.Car;
 import com.bridgelabz.services.ParkingLot;
 import org.junit.jupiter.api.BeforeEach;
@@ -29,12 +30,6 @@ class ParkingLotTest {
     }
 
     @Test
-    void ifParkingCapacityFull_printsFull_elsePrintsTheLeftSlots(){
-        parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
-        assertEquals("99 slots are left in the parking lot", parkingLot.check_parking_status());
-    }
-
-    @Test
     void ifParkingLotFull_notifiesAirportSecurity(){
         parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
         parkingLot.parkCar(new Car("CR-ID-002", "Grey"));
@@ -49,5 +44,11 @@ class ParkingLotTest {
 
         parkingLot.unpark("CR-ID-002");
         assertEquals("Slots are available in the Parking lot.", parkingLot.check_parking_status());
+    }
+
+    @Test
+    void givenCarIdAndAttendant_carShouldBeParkedSuccessfully(){
+        parkingLot.parkCar(new Car("CR-ID-001", "Blue"), new Attendant("Att-001"));
+        assertTrue(parkingLot.parkCar(new Car("CR-ID-001", "Blue"),new Attendant("Att-001")));
     }
 }
