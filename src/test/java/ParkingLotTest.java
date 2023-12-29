@@ -27,4 +27,10 @@ class ParkingLotTest {
         parkingLot.unpark("CR-ID-001");
         assertFalse(parkingLot.check_parked("CR-ID-001"));
     }
+
+    @Test
+    void ifParkingCapacityFull_printsFull_elsePrintsTheLeftSlots(){
+        parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
+        assertEquals("99 slots are left in the parking lot", parkingLot.check_parking_status());
+    }
 }
