@@ -21,6 +21,7 @@ public class ParkingLot {
     * adds a new car to the list*/
     public boolean parkCar(Car car){
         if(parkedCar.size()<capacity){
+            car = new Car(car.getCarId(), car.getColor()); //refreshing time stamp
             parkedCar.add(car);
             System.out.println("Car with ID: "+car.getCarId()+" has been parked successfully!!");
             return true;
@@ -78,6 +79,7 @@ public class ParkingLot {
     * to pass a corresponding attendant who will park the car */
     public boolean parkCar(Car car, Attendant attendant){
         if(parkedCar.size()<capacity){
+            car = new Car(car.getCarId(), car.getColor()); //refreshing time stamp
             parkedCar.add(car);
             System.out.println("Car with ID: "+car.getCarId()+" has successfully been parked by Attendant: "+attendant.getAttId());
             return true;
@@ -97,5 +99,16 @@ public class ParkingLot {
         }
         System.out.println("Car with ID: " + carId + " is not found in the parking lot.");
         return false;
+    }
+
+    /* UC-8 when can is parked a timestamp is marked */
+    public Object getTime(String carId) {
+        for(Car car:parkedCar){
+            if(car.getCarId().equals(carId)){
+                return car.getParked_time();
+            }
+        }
+        System.out.println("No car with ID: "+carId+" in the parking lot");
+        return null;
     }
 }
