@@ -63,4 +63,12 @@ class ParkingLotTest {
         parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
         assertTrue(parkingLot.check_parked("CR-ID-001"));
     }
+
+    //UC8
+    @Test
+    void whenCarParked_checkifTimeStampexists(){
+        parkingLot.parkCar(new Car("CR-ID-001", "Blue"));
+        assertNotNull(parkingLot.getTime("CR-ID-001"));
+
+    }
 }
